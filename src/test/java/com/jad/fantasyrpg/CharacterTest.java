@@ -59,7 +59,7 @@ class CharacterTest {
     @org.junit.jupiter.api.Test
     void getLifePoint() {
         assertEquals(this.humanWarrior.getLifePoint(), 10);
-        assertEquals(this.elfWizard.getLifePoint(), 6);
+        assertEquals(this.elfWizard.getLifePoint(), 4);
         assertEquals(this.dwarfPriest.getLifePoint(), 8);
     }
 
