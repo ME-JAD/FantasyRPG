@@ -10,6 +10,12 @@ class Dwarf implements IRace {
 
     @Override
     public int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character) {
+        return 0;
+    }
+
+    @Override
+    public int getInitialCharacteristicVariation(final CharacteristicName characteristicName,
+                                                 final ICharacter character) {
         return switch (characteristicName) {
             case CONSTITUTION -> 2;
             case DEXTERITY -> -2;

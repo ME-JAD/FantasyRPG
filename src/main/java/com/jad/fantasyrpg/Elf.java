@@ -10,6 +10,12 @@ class Elf implements IRace {
 
     @Override
     public int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character) {
+        return 0;
+    }
+
+    @Override
+    public int getInitialCharacteristicVariation(final CharacteristicName characteristicName,
+                                                 final ICharacter character) {
         return switch (characteristicName) {
             case DEXTERITY -> 2;
             case STRENGTH -> -2;

@@ -5,9 +5,7 @@ public interface CharacterComponent extends Named {
         return this.getCharacteristicVariation(CharacteristicName.valueOf(name), character);
     }
 
-    default int getCharacteristicVariation(final CharacteristicName characteristicName,
-                                           final ICharacter character) {
-        return 0;
-    }
+    int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character);
 
+    int getInitialCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character);
 }

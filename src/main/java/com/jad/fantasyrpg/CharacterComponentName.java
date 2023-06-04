@@ -14,4 +14,11 @@ public enum CharacterComponentName implements Named {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        return "CharacterComponentName{" +
+                "name='" + name + '\'' +
+                "} " + super.toString();
+    }
 }

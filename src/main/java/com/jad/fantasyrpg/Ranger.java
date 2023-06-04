@@ -1,11 +1,11 @@
 package com.jad.fantasyrpg;
 
-public class Thief implements IProfil {
-    private static final String NAME = "Voleur";
+public class Ranger implements IProfil {
+    private static final String NAME = "Rôdeur";
 
     @Override
     public String getName() {
-        return Thief.NAME;
+        return Ranger.NAME;
     }
 
     @Override

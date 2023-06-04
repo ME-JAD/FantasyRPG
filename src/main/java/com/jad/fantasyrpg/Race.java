@@ -23,4 +23,17 @@ public enum Race implements IRace {
     public int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character) {
         return this.race.getCharacteristicVariation(characteristicName, character);
     }
+
+    @Override
+    public int getInitialCharacteristicVariation(final CharacteristicName characteristicName,
+                                                 final ICharacter character) {
+        return this.race.getInitialCharacteristicVariation(characteristicName, character);
+    }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "race=" + race +
+                "} " + super.toString();
+    }
 }

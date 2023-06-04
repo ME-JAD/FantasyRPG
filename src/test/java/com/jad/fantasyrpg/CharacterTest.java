@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CharacterTest {
-    private final Character humanWarrior = new Character("Humain guerrier", () -> "Guerrier", Race.HUMAN);
+    private final Character humanWarrior = new Character("Humain guerrier", Profil.WARRIOR, Race.HUMAN);
 
-    private final Character elfWizard = new Character("Elfe magicien", () -> "Magicien", Race.ELF);
+    private final Character elfWizard = new Character("Elfe magicien", Profil.WIZARD, Race.ELF);
 
-    private final Character dwarfPriest = new Character("Prêtre nain", () -> "Prêtre", Race.DWARF);
+    private final Character dwarfPriest = new Character("Prêtre nain", Profil.PRIEST, Race.DWARF);
 
     @Test
     void getCharacteristic() {

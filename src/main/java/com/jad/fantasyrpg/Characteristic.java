@@ -1,17 +1,17 @@
 package com.jad.fantasyrpg;
 
 public class Characteristic implements NamedValue<Integer> {
-    private final String name;
+    private final CharacteristicName characteristicName;
     private Integer value;
 
-    public Characteristic(final String name, final Integer value) {
-        this.name = name;
+    public Characteristic(final CharacteristicName characteristicName, final Integer value) {
+        this.characteristicName = characteristicName;
         this.value = value;
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return this.characteristicName.getName();
     }
 
     @Override
@@ -27,8 +27,8 @@ public class Characteristic implements NamedValue<Integer> {
     @Override
     public String toString() {
         return "Characteristic{" +
-                "name='" + this.name + '\'' +
-                ", value=" + this.value +
+                "characteristicName=" + characteristicName +
+                ", value=" + value +
                 '}';
     }
 }

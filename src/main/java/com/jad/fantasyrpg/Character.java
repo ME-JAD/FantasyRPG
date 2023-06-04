@@ -9,6 +9,20 @@ public class Character implements ICharacter {
 
     public Character(final String name, final IProfil profil, final IRace race) {
         this.level = 1;
+        this.components.add(profil);
+        this.components.add(race);
+        for (final CharacteristicName characteristicName : CharacteristicName.values()) {
+            this.characteristics.add(new Characteristic(characteristicName, characteristicName.getInitialValue() +
+                    this.getInitialCharacteristicVariation(characteristicName)));
+        }
+    }
+
+    private int getInitialCharacteristicVariation(final CharacteristicName characteristicName) {
+        int variation = 0;
+        for (final CharacterComponent component : this.components) {
+            variation += component.getInitialCharacteristicVariation(characteristicName, this);
+        }
+        return variation;
     }
 
     @Override
@@ -16,8 +30,16 @@ public class Character implements ICharacter {
         return this.getCharacteristic(CharacteristicName.getByName(characteristicName));
     }
 
+    private int getCharacteristicVariation(final CharacteristicName characteristicName) {
+        int variation = 0;
+        for (final CharacterComponent component : this.components) {
+            variation += component.getCharacteristicVariation(characteristicName, this);
+        }
+        return variation;
+    }
+
     public int getCharacteristicModifier(final CharacteristicName characteristicName) {
-        int modifier = Character.CalculateCharacteristicModifier(this.getCharacteristic(characteristicName));
+        int modifier = Character.calculateCharacteristicModifier(this.getCharacteristic(characteristicName));
         for (final CharacterComponent component : this.components) {
             modifier += component.getCharacteristicVariation(characteristicName, this);
         }
@@ -27,8 +49,8 @@ public class Character implements ICharacter {
     @Override
     public int getCharacteristic(final CharacteristicName characteristicName) {
         for (final Characteristic characteristic : this.characteristics) {
-            if (characteristic.isNamedAs(characteristicName.name())) {
-                return characteristic.getValue();
+            if (characteristic.isNamedAs(characteristicName.getName())) {
+                return characteristic.getValue() + this.getCharacteristicVariation(characteristicName);
             }
         }
         throw new IllegalArgumentException("No characteristic named " + characteristicName + " found.");
@@ -39,7 +61,7 @@ public class Character implements ICharacter {
         return this.getCharacteristicModifier(CharacteristicName.getByName(characteristicName));
     }
 
-    private static int CalculateCharacteristicModifier(final int characteristicValue) {
+    private static int calculateCharacteristicModifier(final int characteristicValue) {
         return characteristicValue / 2 - 5;
     }
 
@@ -76,5 +98,14 @@ public class Character implements ICharacter {
     @Override
     public int getLevel() {
         return this.level;
+    }
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "characteristics=" + characteristics +
+                ", components=" + components +
+                ", level=" + level +
+                '}';
     }
 }
