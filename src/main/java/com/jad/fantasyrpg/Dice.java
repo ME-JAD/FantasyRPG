@@ -1,6 +1,6 @@
 package com.jad.fantasyrpg;
 
-public enum Dice {
+enum Dice {
     D6(6),
     D8(8),
     D20(20);

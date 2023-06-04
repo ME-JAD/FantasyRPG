@@ -9,12 +9,12 @@ class Human implements IRace {
     }
 
     @Override
-    public int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character) {
+    public int getCharacteristicVariation(final Characteristic characteristic, final ICharacter character) {
         return 0;
     }
 
     @Override
-    public int getInitialCharacteristicVariation(final CharacteristicName characteristicName,
+    public int getInitialCharacteristicVariation(final Characteristic characteristic,
                                                  final ICharacter character) {
         return 0;
     }

@@ -1,6 +1,6 @@
 package com.jad.fantasyrpg;
 
-public enum CharacterComponentName implements Named {
+enum CharacterComponentName implements Named {
     RACE("Race"),
     PROFIL("Profil");
 

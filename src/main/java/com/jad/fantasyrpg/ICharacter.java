@@ -3,9 +3,9 @@ package com.jad.fantasyrpg;
 public interface ICharacter {
     int getCharacteristic(final String characteristicName);
 
-    int getCharacteristicModifier(final CharacteristicName characteristicName);
+    int getCharacteristicModifier(final Characteristic characteristic);
 
-    int getCharacteristic(final CharacteristicName characteristicName);
+    int getCharacteristic(final Characteristic characteristic);
 
     int getCharacteristicModifier(final String characteristicName);
 

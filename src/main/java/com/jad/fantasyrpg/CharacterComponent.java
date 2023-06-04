@@ -1,11 +1,11 @@
 package com.jad.fantasyrpg;
 
-public interface CharacterComponent extends Named {
+interface CharacterComponent extends Named {
     default int getCharacteristicVariationByName(final String name, final ICharacter character) {
-        return this.getCharacteristicVariation(CharacteristicName.valueOf(name), character);
+        return this.getCharacteristicVariation(Characteristic.valueOf(name), character);
     }
 
-    int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character);
+    int getCharacteristicVariation(final Characteristic characteristic, final ICharacter character);
 
-    int getInitialCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character);
+    int getInitialCharacteristicVariation(final Characteristic characteristic, final ICharacter character);
 }

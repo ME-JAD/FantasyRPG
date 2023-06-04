@@ -1,34 +1,49 @@
 package com.jad.fantasyrpg;
 
-public class Characteristic implements NamedValue<Integer> {
-    private final CharacteristicName characteristicName;
-    private Integer value;
+enum Characteristic implements Named {
+    STRENGTH("Force", BehaviorGetStartingValue.ROLL_3D6),
+    DEXTERITY("Dextérité", BehaviorGetStartingValue.ROLL_3D6),
+    CONSTITUTION("Constitution", BehaviorGetStartingValue.ROLL_3D6),
+    INTELLIGENCE("Intelligence", BehaviorGetStartingValue.ROLL_3D6),
+    WISDOM("Sagesse", BehaviorGetStartingValue.ROLL_3D6),
+    CHARISMA("Charisme", BehaviorGetStartingValue.ROLL_3D6),
+    LIFE_POINTS("Points de vie", BehaviorGetStartingValue.ZERO),
+    MELEE_ATTACK("Attaque de mêlée", BehaviorGetStartingValue.ZERO),
+    RANGED_ATTACK("Attaque à distance", BehaviorGetStartingValue.ZERO),
+    MAGIC_ATTACK("Attaque magique", BehaviorGetStartingValue.ZERO);
 
-    public Characteristic(final CharacteristicName characteristicName, final Integer value) {
-        this.characteristicName = characteristicName;
-        this.value = value;
+    private final String name;
+
+    private final BehaviorGetStartingValue behaviorGetStartingValue;
+
+    Characteristic(final String name, final BehaviorGetStartingValue behaviorGetStartingValue) {
+        this.name = name;
+        this.behaviorGetStartingValue = behaviorGetStartingValue;
+    }
+
+    public static Characteristic getByName(final String name) {
+        for (final Characteristic characteristic : Characteristic.values()) {
+            if (characteristic.getName().equals(name)) {
+                return characteristic;
+            }
+        }
+        throw new IllegalArgumentException("No characteristic named " + name + " found.");
     }
 
     @Override
     public String getName() {
-        return this.characteristicName.getName();
+        return this.name;
     }
 
-    @Override
-    public Integer getValue() {
-        return this.value;
-    }
-
-    @Override
-    public void setValue(final Integer value) {
-        this.value = value;
+    public int getInitialValue() {
+        return this.behaviorGetStartingValue.getStartingValue();
     }
 
     @Override
     public String toString() {
-        return "Characteristic{" +
-                "characteristicName=" + characteristicName +
-                ", value=" + value +
-                '}';
+        return "CharacteristicName{" +
+                "name='" + name + '\'' +
+                ", behaviorGetStartingValue=" + behaviorGetStartingValue +
+                "} " + super.toString();
     }
 }

@@ -18,14 +18,14 @@ public enum Profil implements IProfil {
     }
 
     @Override
-    public int getCharacteristicVariation(final CharacteristicName characteristicName, final ICharacter character) {
-        return this.profil.getCharacteristicVariation(characteristicName, character);
+    public int getCharacteristicVariation(final Characteristic characteristic, final ICharacter character) {
+        return this.profil.getCharacteristicVariation(characteristic, character);
     }
 
     @Override
-    public int getInitialCharacteristicVariation(final CharacteristicName characteristicName,
+    public int getInitialCharacteristicVariation(final Characteristic characteristic,
                                                  final ICharacter character) {
-        return this.profil.getInitialCharacteristicVariation(characteristicName, character);
+        return this.profil.getInitialCharacteristicVariation(characteristic, character);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.jad.fantasyrpg;
 import java.util.ArrayList;
 
 public class Character implements ICharacter {
-    private final ArrayList<Characteristic> characteristics = new ArrayList<>();
+    private final ArrayList<ValuedCharacteristic> valuedCharacteristics = new ArrayList<>();
     private final ArrayList<CharacterComponent> components = new ArrayList<>();
     private int level;
 
@@ -11,54 +11,54 @@ public class Character implements ICharacter {
         this.level = 1;
         this.components.add(profil);
         this.components.add(race);
-        for (final CharacteristicName characteristicName : CharacteristicName.values()) {
-            this.characteristics.add(new Characteristic(characteristicName, characteristicName.getInitialValue() +
-                    this.getInitialCharacteristicVariation(characteristicName)));
+        for (final Characteristic characteristic : Characteristic.values()) {
+            this.valuedCharacteristics.add(new ValuedCharacteristic(characteristic, characteristic.getInitialValue() +
+                    this.getInitialCharacteristicVariation(characteristic)));
         }
     }
 
-    private int getInitialCharacteristicVariation(final CharacteristicName characteristicName) {
+    private int getInitialCharacteristicVariation(final Characteristic characteristic) {
         int variation = 0;
         for (final CharacterComponent component : this.components) {
-            variation += component.getInitialCharacteristicVariation(characteristicName, this);
+            variation += component.getInitialCharacteristicVariation(characteristic, this);
         }
         return variation;
     }
 
     @Override
     public int getCharacteristic(final String characteristicName) {
-        return this.getCharacteristic(CharacteristicName.getByName(characteristicName));
+        return this.getCharacteristic(Characteristic.getByName(characteristicName));
     }
 
-    private int getCharacteristicVariation(final CharacteristicName characteristicName) {
+    private int getCharacteristicVariation(final Characteristic characteristic) {
         int variation = 0;
         for (final CharacterComponent component : this.components) {
-            variation += component.getCharacteristicVariation(characteristicName, this);
+            variation += component.getCharacteristicVariation(characteristic, this);
         }
         return variation;
     }
 
-    public int getCharacteristicModifier(final CharacteristicName characteristicName) {
-        int modifier = Character.calculateCharacteristicModifier(this.getCharacteristic(characteristicName));
+    public int getCharacteristicModifier(final Characteristic characteristic) {
+        int modifier = Character.calculateCharacteristicModifier(this.getCharacteristic(characteristic));
         for (final CharacterComponent component : this.components) {
-            modifier += component.getCharacteristicVariation(characteristicName, this);
+            modifier += component.getCharacteristicVariation(characteristic, this);
         }
         return modifier;
     }
 
     @Override
-    public int getCharacteristic(final CharacteristicName characteristicName) {
-        for (final Characteristic characteristic : this.characteristics) {
-            if (characteristic.isNamedAs(characteristicName.getName())) {
-                return characteristic.getValue() + this.getCharacteristicVariation(characteristicName);
+    public int getCharacteristic(final Characteristic characteristic) {
+        for (final ValuedCharacteristic valuedCharacteristic : this.valuedCharacteristics) {
+            if (valuedCharacteristic.isNamedAs(characteristic.getName())) {
+                return valuedCharacteristic.getValue() + this.getCharacteristicVariation(characteristic);
             }
         }
-        throw new IllegalArgumentException("No characteristic named " + characteristicName + " found.");
+        throw new IllegalArgumentException("No characteristic named " + characteristic + " found.");
     }
 
     @Override
     public int getCharacteristicModifier(final String characteristicName) {
-        return this.getCharacteristicModifier(CharacteristicName.getByName(characteristicName));
+        return this.getCharacteristicModifier(Characteristic.getByName(characteristicName));
     }
 
     private static int calculateCharacteristicModifier(final int characteristicValue) {
@@ -67,22 +67,22 @@ public class Character implements ICharacter {
 
     @Override
     public int getLifePoint() {
-        return this.getCharacteristic(CharacteristicName.LIFE_POINTS);
+        return this.getCharacteristic(Characteristic.LIFE_POINTS);
     }
 
     @Override
     public int getMeleeAttack() {
-        return this.getCharacteristic(CharacteristicName.MELEE_ATTACK);
+        return this.getCharacteristic(Characteristic.MELEE_ATTACK);
     }
 
     @Override
     public int getRangedAttack() {
-        return this.getCharacteristic(CharacteristicName.RANGED_ATTACK);
+        return this.getCharacteristic(Characteristic.RANGED_ATTACK);
     }
 
     @Override
     public int getMagicAttack() {
-        return this.getCharacteristic(CharacteristicName.MAGIC_ATTACK);
+        return this.getCharacteristic(Characteristic.MAGIC_ATTACK);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Character implements ICharacter {
     @Override
     public String toString() {
         return "Character{" +
-                "characteristics=" + characteristics +
+                "characteristics=" + valuedCharacteristics +
                 ", components=" + components +
                 ", level=" + level +
                 '}';
