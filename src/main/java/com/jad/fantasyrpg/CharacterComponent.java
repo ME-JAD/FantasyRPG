@@ -8,4 +8,6 @@ interface CharacterComponent extends Named {
     int getCharacteristicVariation(final Characteristic characteristic, final ICharacter character);
 
     int getInitialCharacteristicVariation(final Characteristic characteristic, final ICharacter character);
+
+    CharacterComponentType getType();
 }

@@ -17,6 +17,7 @@ class Warrior implements IProfil {
         };
     }
 
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public int getInitialCharacteristicVariation(final Characteristic characteristic,
                                                  final ICharacter character) {

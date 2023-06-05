@@ -1,5 +1,6 @@
 package com.jad.fantasyrpg;
 
+@SuppressWarnings("FieldNamingConvention")
 public enum Race implements IRace {
     HUMAN(new Human()),
     HALF_ELF(new HalfElf()),
@@ -12,6 +13,15 @@ public enum Race implements IRace {
 
     Race(final IRace race) {
         this.race = race;
+    }
+
+    public static IRace getByName(final String name) {
+        for (final Race race : Race.values()) {
+            if (race.getName().equals(name)) {
+                return race;
+            }
+        }
+        throw new IllegalArgumentException("No race named " + name + " found.");
     }
 
     @Override
@@ -33,7 +43,7 @@ public enum Race implements IRace {
     @Override
     public String toString() {
         return "Race{" +
-                "race=" + race +
+                "race=" + this.race +
                 "} " + super.toString();
     }
 }

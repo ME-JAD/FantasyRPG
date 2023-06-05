@@ -42,8 +42,8 @@ enum Characteristic implements Named {
     @Override
     public String toString() {
         return "CharacteristicName{" +
-                "name='" + name + '\'' +
-                ", behaviorGetStartingValue=" + behaviorGetStartingValue +
+                "name='" + this.name + '\'' +
+                ", behaviorGetStartingValue=" + this.behaviorGetStartingValue +
                 "} " + super.toString();
     }
 }

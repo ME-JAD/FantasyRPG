@@ -1,5 +1,6 @@
 package com.jad.fantasyrpg;
 
+@SuppressWarnings("FieldNamingConvention")
 enum Dice {
     D6(6),
     D8(8),

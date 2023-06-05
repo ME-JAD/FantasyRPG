@@ -1,12 +1,12 @@
 package com.jad.fantasyrpg;
 
-enum CharacterComponentName implements Named {
+enum CharacterComponentType implements Named {
     RACE("Race"),
     PROFIL("Profil");
 
     private final String name;
 
-    CharacterComponentName(final String name) {
+    CharacterComponentType(final String name) {
         this.name = name;
     }
 
@@ -18,7 +18,7 @@ enum CharacterComponentName implements Named {
     @Override
     public String toString() {
         return "CharacterComponentName{" +
-                "name='" + name + '\'' +
+                "name='" + this.name + '\'' +
                 "} " + super.toString();
     }
 }

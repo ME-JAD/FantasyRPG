@@ -5,11 +5,20 @@ public enum Profil implements IProfil {
     WIZARD(new Wizard()),
     RANGER(new Ranger()),
     PRIEST(new Priest()),
-    THIEF(new Thief());;
+    THIEF(new Thief());
     private final IProfil profil;
 
     Profil(final IProfil profil) {
         this.profil = profil;
+    }
+
+    public static IProfil getByName(final String name) {
+        for (final Profil profil : Profil.values()) {
+            if (profil.getName().equals(name)) {
+                return profil;
+            }
+        }
+        throw new IllegalArgumentException("No profil named " + name + " found.");
     }
 
     @Override
@@ -31,7 +40,7 @@ public enum Profil implements IProfil {
     @Override
     public String toString() {
         return "Profil{" +
-                "profil=" + profil +
+                "profil=" + this.profil +
                 "} " + super.toString();
     }
 }

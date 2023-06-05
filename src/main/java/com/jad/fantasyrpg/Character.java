@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Character implements ICharacter {
     private final ArrayList<ValuedCharacteristic> valuedCharacteristics = new ArrayList<>();
     private final ArrayList<CharacterComponent> components = new ArrayList<>();
+    @SuppressWarnings("FieldMayBeFinal")
     private int level;
 
     public Character(final String name, final IProfil profil, final IRace race) {
@@ -87,12 +88,12 @@ public class Character implements ICharacter {
 
     @Override
     public IRace getRace() {
-        return null;
+        return Race.getByName(this.getComponent(CharacterComponentType.RACE).getName());
     }
 
     @Override
     public IProfil getProfil() {
-        return null;
+        return Profil.getByName(this.getComponent(CharacterComponentType.PROFIL).getName());
     }
 
     @Override
@@ -100,12 +101,21 @@ public class Character implements ICharacter {
         return this.level;
     }
 
+    private CharacterComponent getComponent(final CharacterComponentType componentType) {
+        for (final CharacterComponent component : this.components) {
+            if (component.getType().equals(componentType)) {
+                return component;
+            }
+        }
+        throw new IllegalArgumentException("No component named " + componentType + " found.");
+    }
+
     @Override
     public String toString() {
         return "Character{" +
-                "characteristics=" + valuedCharacteristics +
-                ", components=" + components +
-                ", level=" + level +
+                "characteristics=" + this.valuedCharacteristics +
+                ", components=" + this.components +
+                ", level=" + this.level +
                 '}';
     }
 }

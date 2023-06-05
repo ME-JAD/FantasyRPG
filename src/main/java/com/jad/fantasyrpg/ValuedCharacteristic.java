@@ -27,8 +27,8 @@ class ValuedCharacteristic implements NamedValue<Integer> {
     @Override
     public String toString() {
         return "Characteristic{" +
-                "characteristicName=" + characteristic +
-                ", value=" + value +
+                "characteristicName=" + this.characteristic +
+                ", value=" + this.value +
                 '}';
     }
 }
